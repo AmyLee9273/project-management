@@ -4,40 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프로젝트 관리 시스템</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px; /* 폰트 크기 줄이기 */
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 4px; /* 셀 간격 줄이기 */
-            text-align: center;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        .small-cell {
-            width: 25px; /* 셀 너비 줄이기 */
-            min-width: 25px;
-        }
-        a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1 style="text-align: center;">프로젝트 관리 시스템</h1>
-    <table>
+    <table id="projectTable">
         <thead>
             <tr>
                 <th rowspan="2">프로젝트 코드</th>
@@ -48,86 +19,17 @@
             </tr>
             <tr>
                 <!-- 연도별 월 -->
-                <th class="small-cell">1</th><th class="small-cell">2</th><th class="small-cell">3</th>
-                <th class="small-cell">4</th><th class="small-cell">5</th><th class="small-cell">6</th>
-                <th class="small-cell">7</th><th class="small-cell">8</th><th class="small-cell">9</th>
-                <th class="small-cell">10</th><th class="small-cell">11</th><th class="small-cell">12</th>
-                <th class="small-cell">1</th><th class="small-cell">2</th><th class="small-cell">3</th>
-                <th class="small-cell">4</th><th class="small-cell">5</th><th class="small-cell">6</th>
-                <th class="small-cell">7</th><th class="small-cell">8</th><th class="small-cell">9</th>
-                <th class="small-cell">10</th><th class="small-cell">11</th><th class="small-cell">12</th>
+                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+                <th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
+                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+                <th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
             </tr>
         </thead>
-        <tbody id="projectTable">
-            <!-- JavaScript로 동적으로 생성 -->
+        <tbody>
+            <!-- JavaScript에서 동적으로 데이터 추가 -->
         </tbody>
     </table>
-
-    <script>
-        // 프로젝트 데이터
-        const projects = [
-             { code: "2024-KFW-온산-ONS-375MW-EPC입찰", name: "온산 ONS", status: "진행 중" },
-            { code: "2023-이터닉스-풍백-육풍-50MW-EPC수행", name: "풍백 육풍", status: "완료" },
-            { code: "2024-수협-미정-태양광-5MW-EPC입찰", name: "수협 미정 태양광", status: "계획 중" },
-            { code: "2024-인스파이어-인천-태양광-10MW-EPC입찰", name: "인천 태양광", status: "계획 중" },
-            { code: "2024-강동그린-경주강동-연료전지-xxMW-EPC수행", name: "경주강동 연료전지", status: "진행 중" },
-            { code: "2024-KYGP-경주-육풍-50MW-개발", name: "경주 육풍", status: "개발 중" },
-            { code: "2024-KYGP-포항-육풍-150MW-발전허가", name: "포항 육풍", status: "발전허가 중" },
-            { code: "2024-KYGP-삼척어리-육풍-31MW-발전허가", name: "삼척어리 육풍", status: "발전허가 중" },
-            { code: "2024-KYGP-삼척용연-육풍-31MW-발전허가", name: "삼척용연 육풍", status: "발전허가 중" },
-            { code: "2024-KYGP-삼척판문-육풍-31MW-발전허가", name: "삼척판문 육풍", status: "발전허가 중" },
-            { code: "2024-KYGP-제주마을1-육풍-2MW-EPC수행", name: "제주마을1 육풍", status: "EPC 수행 중" },
-            { code: "2024-KYGP-제주마을2-육풍-2MW-EPC수행", name: "제주마을2 육풍", status: "EPC 수행 중" },
-            { code: "2024-KYGP-제주마을3-육풍-2MW-EPC수행", name: "제주마을3 육풍", status: "EPC 수행 중" },
-            { code: "2024-KYGP-제주마을4-육풍-2MW-EPC수행", name: "제주마을4 육풍", status: "EPC 수행 중" },
-            { code: "2024-KYGP-제주마을5-육풍-2MW-EPC수행", name: "제주마을5 육풍", status: "EPC 수행 중" },
-            { code: "2024-KYGP-제주마을6-육풍-2MW-EPC수행", name: "제주마을6 육풍", status: "EPC 수행 중" },
-            { code: "2024-KYGP-제주수망-태양광-xxMW-EPC수행", name: "제주수망 태양광", status: "EPC 수행 중" },
-            { code: "2024-KYGP-오마해도리1-태양광-31MW-개발", name: "오마해도리1 태양광", status: "개발 중" },
-            { code: "2024-KYGP-오마해도리2-태양광-40MW-개발", name: "오마해도리2 태양광", status: "개발 중" },
-            { code: "2024-금양그린-보은-연료전지-19.8MW-EPC완료", name: "보은 연료전지 19.8MW", status: "EPC 완료" },
-            { code: "2024-금양그린-보은-연료전지-32MW-발전허가", name: "보은 연료전지 32MW", status: "발전허가 중" }
-        ];
-
-        // 표 생성
-        const tableBody = document.getElementById("projectTable");
-
-        projects.forEach(project => {
-            const row = document.createElement("tr");
-
-            // 프로젝트 코드
-            const codeCell = document.createElement("td");
-            const link = document.createElement("a");
-            link.href = `${project.code}.html`;
-            link.textContent = project.code;
-            codeCell.appendChild(link);
-            row.appendChild(codeCell);
-
-            // 프로젝트 이름
-            const nameCell = document.createElement("td");
-            nameCell.textContent = project.name;
-            row.appendChild(nameCell);
-
-            // 상태
-            const statusCell = document.createElement("td");
-            statusCell.textContent = project.status;
-            row.appendChild(statusCell);
-
-            // 연도별 월 데이터
-            for (let year = 2023; year <= 2024; year++) {
-                for (let month = 1; month <= 12; month++) {
-                    const cell = document.createElement("td");
-                    cell.className = "small-cell";
-                    if (project.timeline[year] && project.timeline[year][month]) {
-                        cell.textContent = project.timeline[year][month];
-                    }
-                    row.appendChild(cell);
-                }
-            }
-
-            tableBody.appendChild(row);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
 
