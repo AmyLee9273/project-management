@@ -46,7 +46,7 @@ projects.forEach(project => {
     row.appendChild(statusCell);
 
     // 연도별 월 데이터
-    for (let year = 2023; year <= 2024; year++) {
+    for (let year = 2023; year <= 2027; year++) {
         for (let month = 1; month <= 12; month++) {
             const cell = document.createElement("td");
             row.appendChild(cell);
