@@ -7,26 +7,28 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 20px;
         }
         table {
-            border-collapse: collapse;
             width: 100%;
-            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 12px; /* 폰트 크기 줄이기 */
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 4px; /* 셀 간격 줄이기 */
             text-align: center;
         }
         th {
             background-color: #f4f4f4;
         }
-        td {
-            font-size: 14px;
+        .small-cell {
+            width: 25px; /* 셀 너비 줄이기 */
+            min-width: 25px;
         }
         a {
-            text-decoration: none;
             color: #007BFF;
+            text-decoration: none;
         }
         a:hover {
             text-decoration: underline;
@@ -35,8 +37,7 @@
 </head>
 <body>
     <h1 style="text-align: center;">프로젝트 관리 시스템</h1>
-    <table id="projectTable">
-        <!-- 헤더 부분 -->
+    <table>
         <thead>
             <tr>
                 <th rowspan="2">프로젝트 코드</th>
@@ -44,81 +45,70 @@
                 <th rowspan="2">상태</th>
                 <th colspan="12">2023</th>
                 <th colspan="12">2024</th>
-                <th colspan="12">2025</th>
-                <th colspan="12">2026</th>
             </tr>
             <tr>
                 <!-- 연도별 월 -->
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
-                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
+                <th class="small-cell">1</th><th class="small-cell">2</th><th class="small-cell">3</th>
+                <th class="small-cell">4</th><th class="small-cell">5</th><th class="small-cell">6</th>
+                <th class="small-cell">7</th><th class="small-cell">8</th><th class="small-cell">9</th>
+                <th class="small-cell">10</th><th class="small-cell">11</th><th class="small-cell">12</th>
+                <th class="small-cell">1</th><th class="small-cell">2</th><th class="small-cell">3</th>
+                <th class="small-cell">4</th><th class="small-cell">5</th><th class="small-cell">6</th>
+                <th class="small-cell">7</th><th class="small-cell">8</th><th class="small-cell">9</th>
+                <th class="small-cell">10</th><th class="small-cell">11</th><th class="small-cell">12</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- JavaScript에서 동적으로 데이터 추가 -->
+        <tbody id="projectTable">
+            <!-- JavaScript로 동적으로 생성 -->
         </tbody>
     </table>
 
     <script>
-        // 프로젝트 데이터 배열
+        // 프로젝트 데이터
         const projects = [
-            {
-                code: "2023-VENA-곡성-육풍-50MW-EPC입찰",
-                name: "곡성 육풍",
-                status: "진행 중",
-                timeline: { 2023: { 7: "P1" }, 2024: { 2: "P2", 4: "P3" }, 2025: { 6: "PF" } }
-            },
-            {
-                code: "2024-VENA-태안-변+송-500+42-EPC입찰",
-                name: "태안 변+송",
-                status: "계획 중",
-                timeline: { 2024: { 2: "P1" }, 2025: { 5: "PF" } }
-            }
+            { code: "2023-VENA-곡성-육풍-50MW-EPC입찰", name: "곡성 육풍", status: "진행 중", timeline: { 2023: { 7: "P1" }, 2024: { 2: "P2" } } },
+            { code: "2024-VENA-태안-변+송-500+42-EPC입찰", name: "태안 변+송", status: "계획 중", timeline: { 2024: { 5: "P3" } } }
         ];
 
-        // 표 생성 함수
-        function generateTable() {
-            const tableBody = document.querySelector("#projectTable tbody");
-            
-            projects.forEach(project => {
-                const row = document.createElement("tr");
-                
-                // 프로젝트 코드
-                const codeCell = document.createElement("td");
-                const link = document.createElement("a");
-                link.href = `${project.code}.html`; // 상세 페이지 링크
-                link.textContent = project.code;
-                codeCell.appendChild(link);
-                row.appendChild(codeCell);
+        // 표 생성
+        const tableBody = document.getElementById("projectTable");
 
-                // 프로젝트 이름
-                const nameCell = document.createElement("td");
-                nameCell.textContent = project.name;
-                row.appendChild(nameCell);
+        projects.forEach(project => {
+            const row = document.createElement("tr");
 
-                // 상태
-                const statusCell = document.createElement("td");
-                statusCell.textContent = project.status;
-                row.appendChild(statusCell);
+            // 프로젝트 코드
+            const codeCell = document.createElement("td");
+            const link = document.createElement("a");
+            link.href = `${project.code}.html`;
+            link.textContent = project.code;
+            codeCell.appendChild(link);
+            row.appendChild(codeCell);
 
-                // 연도별 데이터 (2023~2026)
-                for (let year = 2023; year <= 2026; year++) {
-                    for (let month = 1; month <= 12; month++) {
-                        const timelineCell = document.createElement("td");
-                        if (project.timeline[year] && project.timeline[year][month]) {
-                            timelineCell.textContent = project.timeline[year][month];
-                        }
-                        row.appendChild(timelineCell);
+            // 프로젝트 이름
+            const nameCell = document.createElement("td");
+            nameCell.textContent = project.name;
+            row.appendChild(nameCell);
+
+            // 상태
+            const statusCell = document.createElement("td");
+            statusCell.textContent = project.status;
+            row.appendChild(statusCell);
+
+            // 연도별 월 데이터
+            for (let year = 2023; year <= 2024; year++) {
+                for (let month = 1; month <= 12; month++) {
+                    const cell = document.createElement("td");
+                    cell.className = "small-cell";
+                    if (project.timeline[year] && project.timeline[year][month]) {
+                        cell.textContent = project.timeline[year][month];
                     }
+                    row.appendChild(cell);
                 }
+            }
 
-                tableBody.appendChild(row);
-            });
-        }
-
-        // 표 생성 실행
-        generateTable();
+            tableBody.appendChild(row);
+        });
     </script>
 </body>
 </html>
+
