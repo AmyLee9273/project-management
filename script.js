@@ -1,6 +1,6 @@
 const projects = [
-    { code: "2024-KFW-온산-ONS-375MW-EPC입찰", name: "온산 ONS", status: "진행 중", detailPage: "project-detail/2024-KFW-온산-ONS-375MW.html" },
-    { code: "2023-이터닉스-풍백-육풍-50MW-EPC수행", name: "풍백 육풍", status: "완료" },
+    { code: "2024-KFW-온산-ONS-375MW-EPC입찰", name: "온산 ONS", detailPage: "project-detail/2024-KFW-온산-ONS-375MW.html" },
+    { code: "2023-이터닉스-풍백-육풍-50MW-EPC수행", name: "풍백 육풍", detailPage: "project-detail/2023-이터닉스-풍백-육풍-50MW.html" },
     { code: "2024-수협-미정-태양광-5MW-EPC입찰", name: "수협 미정 태양광", status: "계획 중" },
     { code: "2024-인스파이어-인천-태양광-10MW-EPC입찰", name: "인천 인스파이어 태양광", status: "입찰 준비" },
     { code: "2024-강동그린-경주강동-연료전지-xxMW-EPC수행", name: "강동그린에너지 연료전지", status: "EPC 수행 중" },
