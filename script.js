@@ -30,7 +30,7 @@ projects.forEach(project => {
     // 프로젝트 코드
     const codeCell = document.createElement("td");
     const link = document.createElement("a");
-    link.href = "#";
+    link.href = project.detailPage;
     link.textContent = project.code;
     codeCell.appendChild(link);
     row.appendChild(codeCell);
